@@ -28,7 +28,7 @@ export default function DrawerLayout() {
                 options={{ drawerLabel: 'Profile' }}
             />
 
-            
+
 
         </Drawer>
     );

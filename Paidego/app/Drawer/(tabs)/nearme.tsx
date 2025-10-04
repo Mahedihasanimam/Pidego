@@ -17,7 +17,7 @@ import MapView, { Marker } from 'react-native-maps';
 
 const MapEventCard = ({ event }: { event: any }) => (
   <TouchableOpacity
-      onPress={() =>router.push('/eventDetails/PlayerEventDetails')}
+    onPress={() => router.push('/eventDetails/PlayerEventDetails')}
     style={tw`bg-white rounded-lg shadow-lg w-48 mr-4 overflow-hidden`}>
     <Image source={require('@/assets/images/event.png')} style={tw`w-full h-24`} />
     <View style={tw`p-3`}>
@@ -74,7 +74,7 @@ const NearMeScreen: React.FC = () => {
         <MapView style={StyleSheet.absoluteFill} initialRegion={initialRegion}>
           {dummyEvents.map(event => (
             <Marker key={event.id} coordinate={event.coordinate} title={event.title}>
-               <Ionicons name="location-sharp" size={32} color="#1D0303" />
+              <Ionicons name="location-sharp" size={32} color="#1D0303" />
             </Marker>
           ))}
         </MapView>

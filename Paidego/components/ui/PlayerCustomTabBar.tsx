@@ -38,12 +38,9 @@ export default function PlayerCustomTabBar() {
                         style={tw`items-center justify-center`}
                     >
                         {isActive ? tab.activeicon : tab.inactiveicon}
-                        {isActive && (
-                            // 4. Apply twrnc styles to the active tab's text
-                            <Text style={tw`text-xs text-[#1D0303] mt-0.5 font-bold`}>
+                        <Text style={tw`text-xs ${isActive ? 'text-[#1D0303]' : 'text-gray-500'} mt-0.5 font-bold`}>
                                 {tab.label}
                             </Text>
-                        )}
                     </TouchableOpacity>
                 );
             })}

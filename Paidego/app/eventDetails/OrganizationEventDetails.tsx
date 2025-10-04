@@ -1,15 +1,17 @@
+import { payicon } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';
 import {
-    Image,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 // --- Reusable Sub-Components ---
 
@@ -30,7 +32,7 @@ const OrganizationEventDetails: React.FC = () => {
 
       {/* Custom Header */}
       <View style={tw`p-4 mt-4 flex-row items-center border-b border-gray-200`}>
-        <TouchableOpacity onPress={()=>router.back()} style={tw` p-2 mr-2 `}>
+        <TouchableOpacity onPress={() => router.back()} style={tw` p-2 mr-2 `}>
           <Ionicons name="arrow-back" size={24} color="#1D0303" />
         </TouchableOpacity>
         <Text
@@ -69,13 +71,20 @@ const OrganizationEventDetails: React.FC = () => {
         </View>
 
         <View style={tw`h-px bg-gray-200 my-5`} />
-        
+
         {/* Event Status */}
         <View style={tw`flex-row`}>
-            <View style={tw`px-3 py-1.5 rounded-full bg-blue-600`}>
-                <Text style={tw`text-white text-xs font-RoboBold`}>Upcoming</Text>
-            </View>
+          <View style={tw`px-3 py-1.5 rounded-full bg-blue-600`}>
+            <Text style={tw`text-white text-xs font-RoboBold`}>Upcoming</Text>
+          </View>
         </View>
+        <TouchableOpacity onPress={() => router.push("/Drawer/transaction")} style={tw`bg-[#028400] rounded-lg px-4 py-2 mt-4`}>
+          <View style={tw`flex-row items-center justify-center`}>
+
+            <SvgXml xml={payicon} style={tw`mr-2`} />
+            <Text style={tw`text-white text-center text-lg font-semibold`}>  Pay</Text>
+          </View>
+        </TouchableOpacity>
 
         {/* Description */}
         <View style={tw`mt-6`}>
@@ -100,21 +109,21 @@ const OrganizationEventDetails: React.FC = () => {
             </Text>
           </View>
         </View>
-       {/* Action Buttons Footer */}
-      <View style={tw`px-5 py-3 mt-6 flex-row justify-end`}>
-        <TouchableOpacity style={tw`border border-[#1D0303] rounded-lg px-6 py-3 mr-3`}>
+        {/* Action Buttons Footer */}
+        <View style={tw`px-5 py-3 mt-6 flex-row justify-end`}>
+          <TouchableOpacity style={tw`border border-[#1D0303] rounded-lg px-6 py-3 mr-3`}>
             <Text style={tw`text-xs font-RoboBold text-[#1D0303]`}>Close</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push("/eventDetails/eventOverview")} style={tw`bg-[#1D0303] rounded-lg px-6 py-3 mr-3`}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/eventDetails/eventOverview")} style={tw`bg-[#1D0303] rounded-lg px-6 py-3 mr-3`}>
             <Text style={tw`text-white text-xs font-RoboBold`}>View Event</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={tw`bg-[#1D0303] rounded-lg px-6 py-3`}>
+          </TouchableOpacity>
+          <TouchableOpacity style={tw`bg-[#1D0303] rounded-lg px-6 py-3`}>
             <Text style={tw`text-white text-xs font-RoboBold`}>Edit Event</Text>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-      
-    </SafeAreaView>
+
+    </SafeAreaView >
   );
 };
 

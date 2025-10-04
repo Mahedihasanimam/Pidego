@@ -3,12 +3,12 @@ import { Ionicons } from '@expo/vector-icons'; // Using Expo's vector icons
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-    Image,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 const InfoRow = ({ icon, text }: { icon: any; text: string }) => (
@@ -28,13 +28,13 @@ const PlayerEventDetails: React.FC = () => {
       {/* Custom Header */}
       <View style={tw`px-5 pt-4 pb-3 border-b border-gray-200 mt-4`}>
         <TouchableOpacity onPress={() => router.back()} style={tw`absolute top-4 left-5 z-10 p-1`}>
-            <Ionicons name="arrow-back" size={24} color="#1D0303" />
+          <Ionicons name="arrow-back" size={24} color="#1D0303" />
         </TouchableOpacity>
         <Text style={tw`text-center text-2xl font-RoboBold text-[#1D0303]`}>
           Dhaka Football League
         </Text>
       </View>
-      
+
       <ScrollView contentContainerStyle={tw`pb-24 px-5`}>
         {/* Organizer Info */}
         <View style={tw`mt-4`}>
@@ -52,29 +52,29 @@ const PlayerEventDetails: React.FC = () => {
 
         {/* Event Image */}
         <Image source={require('@/assets/images/event2.png')} style={tw`w-full h-40 rounded-xl my-4`} />
-        
+
         {/* Event Details Grid */}
         <View style={tw`flex-row flex-wrap justify-between gap-y-2`}>
-            <View style={tw`w-[48%]`}>
-                <InfoRow icon="football-outline" text="Football" />
-            </View>
-            <View style={tw`w-[48%]`}>
-                <InfoRow icon="location-outline" text="Motijheel, Dhaka" />
-            </View>
-            <View style={tw`w-full`}>
-                <InfoRow icon="calendar-outline" text="Sat, Aug 30, 2:00 pm to Fri, Sep 05, 2:00 pm" />
-            </View>
-            <View style={tw`w-[48%]`}>
-                <InfoRow icon="people-outline" text="8/14 players" />
-            </View>
-             <View style={tw`w-[48%]`}>
-                <InfoRow icon="cash-outline" text="$20 entry fee" />
-            </View>
-            <View style={tw`w-[48%]`}>
-                <InfoRow icon="trophy-outline" text="$500 prize" />
-            </View>
+          <View style={tw`w-[48%]`}>
+            <InfoRow icon="football-outline" text="Football" />
+          </View>
+          <View style={tw`w-[48%]`}>
+            <InfoRow icon="location-outline" text="Motijheel, Dhaka" />
+          </View>
+          <View style={tw`w-full`}>
+            <InfoRow icon="calendar-outline" text="Sat, Aug 30, 2:00 pm to Fri, Sep 05, 2:00 pm" />
+          </View>
+          <View style={tw`w-[48%]`}>
+            <InfoRow icon="people-outline" text="8/14 players" />
+          </View>
+          <View style={tw`w-[48%]`}>
+            <InfoRow icon="cash-outline" text="$20 entry fee" />
+          </View>
+          <View style={tw`w-[48%]`}>
+            <InfoRow icon="trophy-outline" text="$500 prize" />
+          </View>
         </View>
-        
+
         <View style={tw`h-px bg-gray-200 my-5`} />
 
         {/* Description */}
@@ -119,7 +119,7 @@ const PlayerEventDetails: React.FC = () => {
             <TouchableOpacity style={tw`border border-[#1D0303] rounded-lg px-6 py-3 mr-3`}>
               <Text style={tw`text-xs font-RoboBold text-[#1D0303]`}>Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>router.push('/eventDetails/eventOverview')} style={tw`bg-[#1D0303] rounded-lg px-6 py-3`}>
+            <TouchableOpacity onPress={() => router.push('/modals/choosePayment_method')} style={tw`bg-[#1D0303] rounded-lg px-6 py-3`}>
               <Text style={tw`text-white text-xs font-RoboBold`}>Pay $10 & Join</Text>
             </TouchableOpacity>
           </View>

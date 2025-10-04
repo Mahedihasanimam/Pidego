@@ -43,7 +43,7 @@ const FirstOnboarding: React.FC = () => {
           <TouchableOpacity
             style={tw`bg-white rounded-xl border border-[#1D0303] py-3.5 items-center`}
             onPress={() => {
-              router.push("/onboarding/secondOnboarding");
+              router.push("/onboarding/roleSelection");
             }}
           >
             <Text style={tw`text-[#1D0303] text-base font-RoboMedium`}>

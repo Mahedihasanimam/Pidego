@@ -10,7 +10,12 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Paidego"
+      "bundleIdentifier": "com.anonymous.Paidego",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyARXa6r8AXKRaoeWqyesQNBI8Y3EUEWSnY"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +23,12 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.Paidego"
+      "package": "com.anonymous.Paidego",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyARXa6r8AXKRaoeWqyesQNBI8Y3EUEWSnY"
+        }
+      }
     },
     "web": {
       "bundler": "metro",

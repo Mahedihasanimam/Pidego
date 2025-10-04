@@ -4,11 +4,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-    SafeAreaView,
-    StatusBar,
-    Text,
-    TouchableOpacity,
-    View
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -60,7 +60,7 @@ const ThirdOnboarding: React.FC = () => {
             style={tw`bg-white rounded-xl border border-[#1D0303] py-3.5 items-center`}
             onPress={() => {
               // Navigate to the main app screen
-              router.replace('/onboarding/roleSelection'); // Using replace to prevent going back to onboarding
+              router.replace('/onboarding/secondOnboarding'); // Using replace to prevent going back to onboarding
             }}>
             <Text style={tw`text-[#1D0303] text-base font-RoboMedium`}>
               Get Started

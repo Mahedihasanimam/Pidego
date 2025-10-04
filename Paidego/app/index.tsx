@@ -14,7 +14,7 @@ const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const SplashScreen: React.FC = () => {
 
-const router = useRouter();
+  const router = useRouter();
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.8);
 
@@ -30,7 +30,7 @@ const router = useRouter();
 
     scale.value = withTiming(1, { duration: 1000 });
     const timer = setTimeout(() => {
-      router.replace('/onboarding/firstOnboarding');
+      router.replace('/onboarding/thirdOnboarding');
     }, 2000);
     return () => clearTimeout(timer);
   }, [opacity, scale, router]);

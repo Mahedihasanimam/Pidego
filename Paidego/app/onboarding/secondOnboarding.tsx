@@ -4,11 +4,11 @@ import { Ionicons } from '@expo/vector-icons'; // Using Expo's vector icons for 
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
-    SafeAreaView,
-    StatusBar,
-    Text,
-    TouchableOpacity,
-    View
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -58,7 +58,7 @@ const SecondOnboarding: React.FC = () => {
             style={tw`bg-white rounded-xl border border-[#1D0303] py-3.5 items-center`}
             onPress={() => {
               // Navigate to the next screen, e.g., '/home' or '/onboarding-3'
-              router.push('/onboarding/thirdOnboarding');
+              router.push('/onboarding/firstOnboarding');
             }}>
             <Text style={tw`text-[#1D0303] text-base font-RoboMedium`}>
               Next
