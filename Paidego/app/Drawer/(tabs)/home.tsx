@@ -75,12 +75,13 @@ const OrganizerEventCard = ({
     Active: { bg: 'bg-blue-600', text: 'Active' },
     Upcoming: { bg: 'bg-yellow-500', text: 'Upcoming' },
     Completed: { bg: 'bg-green-600', text: 'Completed' },
+    pending: { bg: 'bg-red-600', text: 'Pending' },
   };
 
   const statusStyle = statusStyles[event.status as keyof typeof statusStyles];
 
   return (
-    <TouchableOpacity onPress={() => router.push('/eventDetails/OrganizationEventDetails')}>
+    <TouchableOpacity onPress={() => router.push(`/eventDetails/OrganizationEventDetails?status=${event.status}`)}>
       <ImageBackground
         source={require('@/assets/images/event2.png')}
         style={tw`w-full h-56 rounded-2xl overflow-hidden mb-6`}
@@ -186,6 +187,34 @@ const OrganizerHomeScreen: React.FC = () => {
 
   const events = [
     {
+      id: '0',
+      title: 'Dhaka Football League',
+      imageUrl: 'https://placehold.co/400x223/DA0000/FFFFFF?text=Active',
+      date: 'Aug 30, 2025',
+      time: '2:00 pm',
+      location: 'Motijheel, Dhaka',
+      type: 'Single',
+      entryFee: '$20',
+      prize: '$250',
+      registeredPlayers: 8,
+      totalPlayers: 14,
+      status: 'pending',
+    },
+    {
+      id: '3',
+      title: 'Gulshan Padel Tournament',
+      imageUrl: 'https://placehold.co/400x223/028400/FFFFFF?text=Completed',
+      date: 'Aug 1, 2025',
+      time: '9:00 am',
+      location: 'Gulshan Club',
+      type: 'Single',
+      entryFee: '$30',
+      prize: '$500',
+      registeredPlayers: 16,
+      totalPlayers: 16,
+      status: 'Completed',
+    },
+    {
       id: '1',
       title: 'Dhaka Football League',
       imageUrl: 'https://placehold.co/400x223/DA0000/FFFFFF?text=Active',
@@ -213,25 +242,12 @@ const OrganizerHomeScreen: React.FC = () => {
       totalPlayers: 12,
       status: 'Upcoming',
     },
-    {
-      id: '3',
-      title: 'Gulshan Padel Tournament',
-      imageUrl: 'https://placehold.co/400x223/028400/FFFFFF?text=Completed',
-      date: 'Aug 1, 2025',
-      time: '9:00 am',
-      location: 'Gulshan Club',
-      type: 'Single',
-      entryFee: '$30',
-      prize: '$500',
-      registeredPlayers: 16,
-      totalPlayers: 16,
-      status: 'Completed',
-    },
+
   ];
 
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
-  
+
       <CancelConfirmationModal
         visible={isCancelModalVisible}
         onClose={() => setCancelModalVisible(false)}
@@ -250,7 +266,7 @@ const OrganizerHomeScreen: React.FC = () => {
             onMenuPress={() => setOpenMenuId(openMenuId === event.id ? null : event.id)}
             onEdit={() => {
               setOpenMenuId(null);
-              router.push(`/eventDetails/editEvent`); // Example route
+              router.push(`/eventDetails/editEvent`);
             }}
             onCancel={() => {
               setOpenMenuId(null);

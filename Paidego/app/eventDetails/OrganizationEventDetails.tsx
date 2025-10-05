@@ -1,7 +1,8 @@
-import { payicon } from '@/assets/icons/Icon';
+import { payicon, selectwiner } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router/build/hooks';
 import React from 'react';
 import {
   Image,
@@ -24,6 +25,10 @@ const InfoRow = ({ icon, text }: { icon: any; text: string }) => (
 
 // --- Main Screen ---
 const OrganizationEventDetails: React.FC = () => {
+
+  const { status } = useLocalSearchParams();
+
+  console.log('Status:', status);
 
 
   return (
@@ -78,13 +83,33 @@ const OrganizationEventDetails: React.FC = () => {
             <Text style={tw`text-white text-xs font-RoboBold`}>Upcoming</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => router.push("/Drawer/transaction")} style={tw`bg-[#028400] rounded-lg px-4 py-2 mt-4`}>
-          <View style={tw`flex-row items-center justify-center`}>
 
-            <SvgXml xml={payicon} style={tw`mr-2`} />
-            <Text style={tw`text-white text-center text-lg font-semibold`}>  Pay</Text>
-          </View>
-        </TouchableOpacity>
+
+        {
+          status === 'pending' && (
+
+            <TouchableOpacity onPress={() => router.push("/Drawer/transaction")} style={tw`bg-[#028400] rounded-lg px-4 py-2 mt-4`}>
+              <View style={tw`flex-row items-center justify-center`}>
+
+                <SvgXml xml={payicon} style={tw`mr-2`} />
+                <Text style={tw`text-white text-center text-lg font-semibold`}>  Pay</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        }
+        {
+          status === 'Completed' && (
+
+            <TouchableOpacity onPress={() => router.push("/eventDetails/eventOverview")} style={tw`bg-[#3396F3] rounded-lg px-4 py-2 mt-4`}>
+              <View style={tw`flex-row items-center justify-center`}>
+
+                <SvgXml xml={selectwiner} style={tw`mr-2`} />
+                <Text style={tw`text-white text-center text-lg font-semibold`}>  Select Winner</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        }
+
 
         {/* Description */}
         <View style={tw`mt-6`}>

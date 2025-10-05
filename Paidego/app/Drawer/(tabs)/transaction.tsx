@@ -1,5 +1,6 @@
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
 import {
   SafeAreaView,
@@ -20,20 +21,20 @@ const TransactionListItem = ({ item }: { item: any }) => {
     item.type === 'Winning'
       ? 'bg-green-100'
       : item.type === 'Refund'
-      ? 'bg-blue-100'
-      : 'bg-red-100';
+        ? 'bg-blue-100'
+        : 'bg-red-100';
   const iconName =
     item.type === 'Winning'
       ? 'trophy'
       : item.type === 'Refund'
-      ? 'refresh-circle'
-      : 'arrow-up-circle';
+        ? 'refresh-circle'
+        : 'arrow-up-circle';
   const iconColor =
     item.type === 'Winning'
       ? '#03AA00'
       : item.type === 'Refund'
-      ? '#54A7F5'
-      : '#DA0000';
+        ? '#54A7F5'
+        : '#DA0000';
 
   return (
     <View style={tw`flex-row items-center py-4`}>
@@ -75,18 +76,18 @@ const TransactionScreen: React.FC = () => {
       <View style={tw`p-4 items-center`}>
         <Text style={tw`text-3xl font-RoboBold text-[#1D0303]`}>Transaction</Text>
       </View>
-      
+
       <ScrollView contentContainerStyle={tw`pb-4 px-5`}>
         {/* Balance Card */}
         <View style={tw`bg-gray-100 rounded-2xl p-6 items-center my-4`}>
           <Text style={tw`text-base font-RoboNormal text-gray-700`}>Available Balance</Text>
           <Text style={tw`text-5xl font-RoboBold text-[#1D0303] my-2`}>$125.50</Text>
           <View style={tw`flex-row mt-4`}>
-            <TouchableOpacity style={tw`border border-[#1D0303] rounded-lg py-3 px-10 mr-4`}>
-              <Text style={tw`text-sm font-RoboMedium text-[#1D0303]`}>Withdraw</Text>
+            <TouchableOpacity style={tw`border border-[#1D0303] rounded-lg py-3 px-6 mr-4`}>
+              <Text style={tw`text-sm font-RoboMedium text-[#1D0303]`}>Withdraw Earning</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={tw`bg-[#1D0303] rounded-lg py-3 px-10`}>
-              <Text style={tw`text-sm font-RoboMedium text-white`}>Add Funds</Text>
+            <TouchableOpacity onPress={() => router.push("/modals/Payment_Modal")} style={tw`bg-[#1D0303] rounded-lg py-3 px-8`}>
+              <Text style={tw`text-sm font-RoboMedium text-white`}>Deopsit Funds</Text>
             </TouchableOpacity>
           </View>
         </View>

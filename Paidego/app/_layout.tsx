@@ -31,6 +31,13 @@ export default function RootLayout() {
             sheetAllowedDetents: "fitToContents",
             contentStyle: { backgroundColor: "transparent" },
           }} />
+        <Stack.Screen
+          name="modals/winner_selection"
+          options={{
+            presentation: "formSheet",
+            sheetAllowedDetents: "fitToContents",
+            contentStyle: { backgroundColor: "transparent" },
+          }} />
       </Stack>
     </>
   );
