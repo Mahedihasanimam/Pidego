@@ -14,6 +14,12 @@ const CreateNewTeamScreen: React.FC = () => {
             <View style={tw`py-4`}>
 
                 <Text style={tw`text-2xl font-medium text-[#1D0303]`}>Choose Payment Method </Text>
+                <View style={tw`p-3 bg-orange-100 mt-2 rounded-md`}>
+                    <Text style={tw`text-lg text-[#1D0303]`}>⚠️ Important:</Text>
+                    <Text style={tw`text-sm text-[#1D0303]`} >Paying *online** secures your spot immediately.</Text>
+                    <Text>Choosing *cash payment** places you on the waiting list until your payment is verified.
+                        You might *lose your spot** if the event fills up before your cash payment is confirmed.</Text>
+                </View>
                 <Text style={tw`text-sm  text-[#1D0303] mt-2`}>Select how you'd like to pay the $25 entry fee for "Dhaka Football League ".</Text>
 
                 <View style={tw`mt-4 flex flex-row items-center gap-4 w-full`}>
@@ -26,7 +32,6 @@ const CreateNewTeamScreen: React.FC = () => {
                     </TouchableOpacity>
 
                 </View>
-
 
             </View>
         </View>

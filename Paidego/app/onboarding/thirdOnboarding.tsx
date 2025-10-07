@@ -1,6 +1,5 @@
 import { dollericon } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
-import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import {
@@ -19,12 +18,6 @@ const ThirdOnboarding: React.FC = () => {
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <StatusBar barStyle="dark-content" />
 
-      {/* Header with Back Button */}
-      <View style={tw`absolute top-12 left-5 z-10`}>
-        <TouchableOpacity onPress={() => router.back()} style={tw`p-2`}>
-          <Ionicons name="arrow-back" size={24} color="#1D0303" />
-        </TouchableOpacity>
-      </View>
 
       {/* Main container to space content evenly */}
       <View style={tw`flex-1 justify-around items-center px-7`}>
@@ -32,9 +25,9 @@ const ThirdOnboarding: React.FC = () => {
 
         {/* Text Section */}
         <View style={tw`items-center mt-10`}>
-        <View style={tw`my-12`}>
-          <SvgXml xml={dollericon}/>
-        </View>
+          <View style={tw`my-12`}>
+            <SvgXml xml={dollericon} />
+          </View>
           <Text
             style={tw`text-center text-[#1D0303] text-3xl font-RoboBold leading-tight`}>
             Compete & Get Paid
@@ -50,9 +43,9 @@ const ThirdOnboarding: React.FC = () => {
         <View style={tw`w-full`}>
           {/* Page Indicators */}
           <View style={tw`flex-row justify-center items-center my-8`}>
-            <View style={tw`w-3 h-3 bg-gray-300 rounded-full mx-2`} />
-            <View style={tw`w-3 h-3 bg-gray-300 rounded-full mx-2`} />
             <View style={tw`w-3 h-3 bg-[#1D0303] rounded-full mx-2`} />
+            <View style={tw`w-3 h-3 bg-gray-300 rounded-full mx-2`} />
+            <View style={tw`w-3 h-3 bg-gray-300 rounded-full mx-2`} />
           </View>
 
           {/* Get Started Button */}
@@ -60,7 +53,7 @@ const ThirdOnboarding: React.FC = () => {
             style={tw`bg-white rounded-xl border border-[#1D0303] py-3.5 items-center`}
             onPress={() => {
               // Navigate to the main app screen
-              router.replace('/onboarding/secondOnboarding'); // Using replace to prevent going back to onboarding
+              router.push('/onboarding/secondOnboarding'); // Using replace to prevent going back to onboarding
             }}>
             <Text style={tw`text-[#1D0303] text-base font-RoboMedium`}>
               Get Started

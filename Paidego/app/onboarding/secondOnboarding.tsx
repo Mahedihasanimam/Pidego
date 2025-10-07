@@ -20,19 +20,20 @@ const SecondOnboarding: React.FC = () => {
       <StatusBar barStyle="dark-content" />
 
       {/* Header with Back Button */}
+
+      {/* Header with Back Button */}
       <View style={tw`absolute top-12 left-5 z-10`}>
         <TouchableOpacity onPress={() => router.back()} style={tw`p-2`}>
           <Ionicons name="arrow-back" size={24} color="#1D0303" />
         </TouchableOpacity>
       </View>
-
       {/* Main container to space content evenly */}
       <View style={tw`flex-1 justify-around items-center px-7`}>
 
         <View style={tw`items-center mt-10`}>
-        <View style={tw`my-12`}>
-         <SvgXml xml={settingicon}/>
-        </View>
+          <View style={tw`my-12`}>
+            <SvgXml xml={settingicon} />
+          </View>
           <Text
             style={tw`text-center text-[#1D0303] text-3xl font-RoboBold leading-tight`}>
             Host & Manage Event

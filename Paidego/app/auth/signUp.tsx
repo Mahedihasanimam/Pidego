@@ -3,15 +3,15 @@ import { Ionicons } from '@expo/vector-icons'; // Using Expo's vector icons
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 const SignUp: React.FC = () => {
@@ -19,6 +19,7 @@ const SignUp: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -98,6 +99,18 @@ const SignUp: React.FC = () => {
               autoCapitalize="none"
             />
           </View>
+          <View style={tw`w-full mb-4`}>
+            <Text style={tw`input-label`}>Phone</Text>
+            <TextInput
+              style={tw`input rounded-xl border border-[#C5B2B2] px-4 h-12`}
+              placeholder="Enter your phone number"
+              placeholderTextColor="#B6B6B6"
+              value={phone}
+              onChangeText={setPhone}
+              keyboardType="phone-pad"
+              autoCapitalize="none"
+            />
+          </View>
 
           <View style={tw`w-full mb-4`}>
             <Text style={tw`input-label`}>Password</Text>
@@ -139,7 +152,7 @@ const SignUp: React.FC = () => {
 
           {/* Register Button */}
           <TouchableOpacity
-           style={tw` border border-[#C5B2B2] rounded-xl py-3.5 items-center mt-6`}
+            style={tw` border border-[#C5B2B2] rounded-xl py-3.5 items-center mt-6`}
             onPress={handleRegister}>
             <Text style={tw`text-[#1D0303] text-base font-bold font-RoboMedium`}>Register</Text>
           </TouchableOpacity>
