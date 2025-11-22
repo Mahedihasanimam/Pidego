@@ -111,18 +111,30 @@ const EditProfileScreen: React.FC = () => {
                 secureTextEntry
               />
             </View>
+
+            {/*  add field for phone number */}
+            <View style={tw`mb-6`}>
+              <Text style={tw`text-base font-RoboNormal text-[#1D0303] mb-2`}>
+                Phone Number
+              </Text>
+              <TextInput
+                style={tw`border border-gray-300 rounded-lg h-12 px-4 text-base`}
+                placeholder="Enter your phone number"
+                keyboardType="phone-pad"
+              />
+            </View>
           </View>
 
-           {/* Save Changes Button */}
-            <View style={tw`px-5`}>
-                <TouchableOpacity
-                    onPress={handleSaveChanges}
-                    style={tw`bg-[#1D0303] rounded-xl py-4 items-center`}>
-                    <Text style={tw`text-white text-base font-RoboBold`}>
-                    Save Changes
-                    </Text>
-                </TouchableOpacity>
-            </View>
+          {/* Save Changes Button */}
+          <View style={tw`px-5`}>
+            <TouchableOpacity
+              onPress={handleSaveChanges}
+              style={tw`bg-[#1D0303] rounded-xl py-4 items-center`}>
+              <Text style={tw`text-white text-base font-RoboBold`}>
+                Save Changes
+              </Text>
+            </TouchableOpacity>
+          </View>
 
         </ScrollView>
       </KeyboardAvoidingView>

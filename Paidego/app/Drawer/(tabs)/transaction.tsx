@@ -1,7 +1,7 @@
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -51,7 +51,7 @@ const TransactionListItem = ({ item }: { item: any }) => {
         </Text>
       </View>
       <Text style={tw`text-sm font-RoboBold ${amountColor}`}>
-        {isCredit ? '+' : '-'}${item.amount}
+        {isCredit ? '+' : '-'}{item.amount}
       </Text>
     </View>
   );
@@ -70,6 +70,10 @@ const TransactionScreen: React.FC = () => {
     { type: 'Refund', title: 'Refund: Uttara Badminton', date: 'Aug 08, 2025', amount: '$5.00' },
   ];
 
+  const [filter, setFilter] = useState('This Week');
+  const [openFilter, setOpenFilter] = useState(false);
+  const filterOptions = ['This Week', 'This Month', 'This Year'];
+
   return (
     <SafeAreaView style={tw`flex-1 bg-white pt-4`}>
       <StatusBar barStyle="dark-content" />
@@ -87,17 +91,50 @@ const TransactionScreen: React.FC = () => {
               <Text style={tw`text-sm font-RoboMedium text-[#1D0303]`}>Withdraw Earning</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => router.push("/modals/Payment_Modal")} style={tw`bg-[#1D0303] rounded-lg py-3 px-8`}>
-              <Text style={tw`text-sm font-RoboMedium text-white`}>Deopsit Funds</Text>
+              <Text style={tw`text-sm font-RoboMedium text-white`}>Deposit Funds</Text>
             </TouchableOpacity>
           </View>
         </View>
 
         {/* Transaction History */}
         <View>
-          <Text style={tw`text-2xl font-RoboBold text-[#1D0303] mb-2`}>Transactions</Text>
+          <View style={tw`flex flex-row justify-between items-center mb-4`}>
+            <Text style={tw`text-2xl font-RoboBold text-[#1D0303] mb-2`}>Transactions</Text>
+
+            {/* weekly dropdown filter option */}
+            <View style={tw`mb-4`}>
+              <TouchableOpacity
+                onPress={() => setOpenFilter(!openFilter)}
+                style={tw`flex-row justify-between items-center p-3 bg-white rounded-lg border border-gray-200`}>
+                <Text style={tw`text-sm font-RoboMedium text-gray-700`}>{filter}</Text>
+                <Ionicons name={openFilter ? 'chevron-up' : 'chevron-down'} size={18} color="#1D0303" />
+              </TouchableOpacity>
+              {openFilter && (
+                <View style={tw`bg-white rounded-lg mt-2 border absolute z-10 top-10  border-gray-200`}>
+                  {filterOptions.map((opt) => (
+                    <TouchableOpacity
+                      key={opt}
+                      onPress={() => {
+                        setFilter(opt);
+                        setOpenFilter(false);
+                      }}
+                      style={tw`px-4 py-3 border-b border-gray-100`}>
+                      <Text style={tw`text-sm font-RoboNormal text-gray-700`}>{opt}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+            </View>
+          </View>
           {transactions.map((item, index) => (
             <TransactionListItem key={index} item={item} />
           ))}
+
+          <View>
+            <TouchableOpacity style={tw`mt-4 items-center`}>
+              <Text style={tw`text-sm font-RoboMedium text-[#1D0303]`}>Load More</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
       </ScrollView>
