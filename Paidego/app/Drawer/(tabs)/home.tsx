@@ -1,3 +1,4 @@
+import { filtericon } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -8,9 +9,11 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
+  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 // --- Reusable Sub-Components ---
 
@@ -253,10 +256,27 @@ const OrganizerHomeScreen: React.FC = () => {
         onClose={() => setCancelModalVisible(false)}
         eventName={cancelledEventTitle}
       />
-      <View style={tw`p-4 items-center`}>
+      <View style={tw`p-4 items-center mt-6`}>
         <Text style={tw`text-3xl font-RoboBold text-[#1D0303]`}>My Events</Text>
       </View>
+      <View style={tw`flex-row mb-6 px-4`}>
+        <View
+          style={tw`flex-1 flex-row items-center border border-[#6A3838] rounded-xl h-10 px-3`}>
+          <Ionicons name="search-outline" size={20} color="#6A3838" />
+          <TextInput
+            style={tw`flex-1 ml-2 text-base`}
+            placeholder="Search..."
+            placeholderTextColor="#1D030380"
+          />
+        </View>
+        <TouchableOpacity
+          style={tw`  justify-center items-center ml-3`}>
+          <SvgXml xml={filtericon} />
+        </TouchableOpacity>
 
+
+
+      </View>
       <ScrollView contentContainerStyle={tw`pb-4  mb-8 px-5`}>
         {events.map(event => (
           <OrganizerEventCard

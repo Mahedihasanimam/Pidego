@@ -9,11 +9,11 @@ import tw from "twrnc"; // 1. Import twrnc
 
 // Define your tabs with proper typing
 const playertabs = [
-    { name: "/Drawer", label: "Discover", activeicon: <SvgXml xml={DiscoverActiveIcon}/> ,inactiveicon : <SvgXml xml={Discovericon}/> },
-    { name: "/Drawer/nearme", label: "Near Me", activeicon: <SvgXml xml={NearMeActiveIcon}/> ,inactiveicon : <SvgXml xml={NearMeIcon}/> },
-    { name: "/Drawer/transaction", label: "Transaction", activeicon: <SvgXml xml={TransactionActiveIcon}/> ,inactiveicon : <SvgXml xml={TransactionIcon}/> },
-    { name: "/Drawer/leaderboard", label: "Leaderboard", activeicon: <SvgXml xml={LeaderboardActiveIcon}/> ,inactiveicon : <SvgXml xml={LeaderboardIcon}/> },
-    { name: "/Drawer/profile", label: "Profile", activeicon: <SvgXml xml={ProfileActiveIcon}/> ,inactiveicon : <SvgXml xml={ProfileIcon}/> },
+    { name: "/Drawer", label: "Discover", activeicon: <SvgXml xml={DiscoverActiveIcon} />, inactiveicon: <SvgXml xml={Discovericon} /> },
+    { name: "/Drawer/nearme", label: "Near Me", activeicon: <SvgXml xml={NearMeActiveIcon} />, inactiveicon: <SvgXml xml={NearMeIcon} /> },
+    { name: "/Drawer/transaction", label: "Transaction", activeicon: <SvgXml xml={TransactionActiveIcon} />, inactiveicon: <SvgXml xml={TransactionIcon} /> },
+    { name: "/Drawer/leaderboard", label: "Leaderboard", activeicon: <SvgXml xml={LeaderboardActiveIcon} />, inactiveicon: <SvgXml xml={LeaderboardIcon} /> },
+    { name: "/Drawer/profile", label: "Profile", activeicon: <SvgXml xml={ProfileActiveIcon} />, inactiveicon: <SvgXml xml={ProfileIcon} /> },
 ] as const;
 
 
@@ -39,8 +39,8 @@ export default function PlayerCustomTabBar() {
                     >
                         {isActive ? tab.activeicon : tab.inactiveicon}
                         <Text style={tw`text-xs ${isActive ? 'text-[#1D0303]' : 'text-gray-500'} mt-0.5 font-bold`}>
-                                {tab.label}
-                            </Text>
+                            {tab.label}
+                        </Text>
                     </TouchableOpacity>
                 );
             })}

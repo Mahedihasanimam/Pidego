@@ -8,6 +8,7 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -89,13 +90,17 @@ const LeaderboardListItem = ({ player }: { player: any }) => (
 // --- Main Screen ---
 const LeaderboardScreen: React.FC = () => {
   const [activeTab, setActiveTab] = useState('earnings');
+  const [selectedGame, setSelectedGame] = useState('All Games');
+  const [openGameDropdown, setOpenGameDropdown] = useState(false);
+  const gameOptions = ['All Games', 'Padel', 'Badminton', 'Cricket'];
+  const [friendQuery, setFriendQuery] = useState('');
 
   const podiumPlayers = [
     { rank: 2, name: '@winner98', earnings: '$1200', avatar: 'https://placehold.co/60x60/E8E8E8/8C8C8C' },
     { rank: 1, name: '@winner99', earnings: '$1500', avatar: 'https://placehold.co/80x80/FAF4B0/F0DC00' },
     { rank: 3, name: '@winner97', earnings: '$1000', avatar: 'https://placehold.co/60x60/FFD8B5/FF8000' },
   ];
-  
+
   const otherPlayers = [
     { rank: 4, name: '@winner96', earnings: '$950', avatar: 'https://placehold.co/40x40' },
     { rank: 5, name: '@winner95', earnings: '$900', avatar: 'https://placehold.co/40x40' },
@@ -107,21 +112,67 @@ const LeaderboardScreen: React.FC = () => {
   ];
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-white bg-gray-100`}>
+    <SafeAreaView style={tw`flex-1 bg-gray-100`}>
       <StatusBar barStyle="dark-content" />
       <View style={tw`p-4 items-center flex-row mt-6 bg-gray-200 rounded-lg mx-2 mb-4`}>
-         <TouchableOpacity onPress={() => router.back()} style={tw`p-1`}>
-            <Ionicons name="arrow-back" size={24} color="#1D0303" />
+        <TouchableOpacity onPress={() => router.back()} style={tw`p-1`}>
+          <Ionicons name="arrow-back" size={24} color="#1D0303" />
         </TouchableOpacity>
         <Text style={tw`text-3xl font-RoboBold text-[#1D0303] text-center flex-1 -ml-8`}>Leaderboard</Text>
       </View>
-      
+
       <ScrollView contentContainerStyle={tw`pb-4`}>
-        <View style={tw`px-5 `}>
-            <Text style={tw`text-2xl font-RoboBold text-[#1D0303] mb-4`}>Lists</Text>
+        <View style={tw`px-5 mb-4`}>
+          <View style={tw`flex-row items-center justify-between`}>
+            <Text style={tw`text-2xl font-RoboBold text-[#1D0303]`}>Lists</Text>
+
+            <View>
+              <TouchableOpacity
+                onPress={() => setOpenGameDropdown(!openGameDropdown)}
+                style={tw`self-start w-44 flex-row justify-between items-center p-3 bg-white rounded-lg border border-gray-200`}>
+                <Text style={tw`text-sm font-RoboMedium text-gray-700`}>{selectedGame}</Text>
+                <Ionicons name={openGameDropdown ? 'chevron-up' : 'chevron-down'} size={18} color="#1D0303" />
+              </TouchableOpacity>
+              {openGameDropdown && (
+                <View style={tw`self-start w-44 bg-white rounded-lg mt-2 z-10 absolute top-10 border border-gray-200 overflow-hidden`}>
+                  {gameOptions.map((g) => (
+                    <TouchableOpacity
+                      key={g}
+                      onPress={() => {
+                        setSelectedGame(g);
+                        setOpenGameDropdown(false);
+                      }}
+                      style={tw`px-4 py-3 border-b border-gray-100`}>
+                      <Text style={tw`text-sm font-RoboNormal text-gray-700`}>{g}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+            </View>
+          </View>
+          {/* Friends search input below list section */}
+          <View style={tw` mt-4 `}>
+            <Text style={tw`text-sm font-RoboMedium text-gray-600 mb-2`}>Search Friends</Text>
+            <View style={tw`flex-row items-center bg-white rounded-lg border border-gray-200 px-3 py-2`}>
+              <Ionicons name="search" size={18} color="#9CA3AF" />
+              <TextInput
+                value={friendQuery}
+                onChangeText={setFriendQuery}
+                onFocus={() => router.push('/screens/SearchPage')}
+                placeholder="Search by @username or name"
+                placeholderTextColor="#9CA3AF"
+                style={tw`ml-3 flex-1 text-sm`}
+              />
+              {friendQuery.length > 0 && (
+                <TouchableOpacity onPress={() => setFriendQuery('')} style={tw`p-1`}>
+                  <Ionicons name="close" size={18} color="#9CA3AF" />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
         </View>
 
-        <View style={tw`bg-white shadow rounded-2xl p-4 mx-5`}>
+        <View style={tw`bg-white shadow rounded-2xl p-4  mx-5`}>
           {/* Tabs */}
           <View style={tw`flex-row mb-8`}>
             <TouchableOpacity onPress={() => setActiveTab('earnings')} style={tw`py-2 px-4 rounded-lg ${activeTab === 'earnings' ? 'bg-gray-200' : ''}`}>
@@ -138,7 +189,7 @@ const LeaderboardScreen: React.FC = () => {
               <PodiumItem key={player.rank} player={player} rank={player.rank} />
             ))}
           </View>
-          
+
           {/* Leaderboard List */}
           <View style={tw`mt-4`}>
             {otherPlayers.map(player => (
@@ -147,6 +198,12 @@ const LeaderboardScreen: React.FC = () => {
           </View>
 
         </View>
+
+        <TouchableOpacity style={tw`mt-6 items-center self-center bg-[#1D0303] rounded-lg px-4 py-2`}>
+          <Text style={tw`text-sm font-RoboMedium text-white`}>Load More</Text>
+        </TouchableOpacity>
+
+
       </ScrollView>
     </SafeAreaView>
   );

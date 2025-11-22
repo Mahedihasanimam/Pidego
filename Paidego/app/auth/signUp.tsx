@@ -100,7 +100,7 @@ const SignUp: React.FC = () => {
             />
           </View>
           <View style={tw`w-full mb-4`}>
-            <Text style={tw`input-label`}>Phone</Text>
+            <Text style={tw`input-label`}>Phone (Optional)</Text>
             <TextInput
               style={tw`input rounded-xl border border-[#C5B2B2] px-4 h-12`}
               placeholder="Enter your phone number"

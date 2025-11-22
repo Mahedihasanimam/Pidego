@@ -1,3 +1,4 @@
+import { filtericon } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
 import PlayerEventCard from '@/components/PlayerEventCard';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +12,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 
 
@@ -30,7 +32,7 @@ const HomeScreen: React.FC = () => {
       type: 'Team',
       entryFee: '$10 Entry',
       spotsLeft: '6/15',
-    imageUrl: 'https://placehold.co/400x223/064145/FFFFFF?text=Cricket',
+      imageUrl: 'https://placehold.co/400x223/064145/FFFFFF?text=Cricket',
     },
     {
       title: 'Dhaka Cricket League',
@@ -81,7 +83,7 @@ const HomeScreen: React.FC = () => {
         {/* Search and Filter */}
         <View style={tw`flex-row mb-6`}>
           <View
-            style={tw`flex-1 flex-row items-center border border-[#6A3838] rounded-xl h-12 px-3`}>
+            style={tw`flex-1 flex-row items-center border border-[#6A3838] rounded-xl h-10 px-3`}>
             <Ionicons name="search-outline" size={20} color="#6A3838" />
             <TextInput
               style={tw`flex-1 ml-2 text-base`}
@@ -90,10 +92,31 @@ const HomeScreen: React.FC = () => {
             />
           </View>
           <TouchableOpacity
-            style={tw`w-28 border border-[#6A3838] rounded-xl h-12 justify-center items-center ml-3`}>
-            <Text style={tw`font-RoboNormal text-[#1D0303]`}>All Sports</Text>
+            style={tw`  justify-center items-center ml-3`}>
+            <SvgXml xml={filtericon} />
           </TouchableOpacity>
+
+
+
         </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw`flex-row mb-4  `}>
+          <TouchableOpacity
+            style={tw`  justify-center items-center ml-3 bg-[#1D0303] rounded-lg px-4 py-2`}>
+            <Text style={tw`text-sm font-RoboMedium text-white`}>Upcoming</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={tw`  justify-center items-center ml-3 bg-transparent border rounded-lg px-4 py-2`}>
+            <Text style={tw`text-sm font-RoboMedium text-[#1D0303] font-semibold`}>Today</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={tw`  justify-center items-center ml-3 bg-transparent border rounded-lg px-4 py-2`}>
+            <Text style={tw`text-sm font-RoboMedium text-[#1D0303] font-semibold`}>Tommorow</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={tw`  justify-center items-center ml-3 bg-transparent border rounded-lg px-4 py-2`}>
+            <Text style={tw`text-sm font-RoboMedium text-[#1D0303] font-semibold`}>Weekend</Text>
+          </TouchableOpacity>
+        </ScrollView>
 
         {/* Event List */}
         {events.map((event, index) => (

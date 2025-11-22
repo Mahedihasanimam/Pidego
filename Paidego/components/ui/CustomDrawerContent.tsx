@@ -55,6 +55,11 @@ const CustomDrawerContent: React.FC = () => {
       route: '/helpandSupport/helpAndSupport',
     },
     {
+      label: 'Switch to user',
+      icon: 'person-outline',
+      route: '/auth/signIn',
+    },
+    {
       label: 'Logout',
       icon: 'log-out-outline',
       route: '/auth/signIn',
@@ -65,7 +70,7 @@ const CustomDrawerContent: React.FC = () => {
     if (route === '/signIn') {
       console.log('Logging out...');
     }
-    router.push(route as any); 
+    router.push(route as any);
   };
 
   return (

@@ -1,34 +1,34 @@
 import { CreateActiveIcon, CreateIcon, HomeActiveIcon, Homeicon, PerformenceActiveIcon, PerformenceIcon, ProfileActiveIcon, ProfileIcon, TransactionActiveIcon, TransactionIcon } from "@/assets/icons/Icon";
 import { usePathname, useRouter } from "expo-router";
 import React, { useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Platform, Text, TouchableOpacity, View } from "react-native";
 import { SvgXml } from "react-native-svg";
 import tw from "twrnc";
 
 const organizationtabs = [
-    { name: "/Drawer/home", label: "Home", activeicon: <SvgXml xml={HomeActiveIcon}/> ,inactiveicon : <SvgXml xml={Homeicon}/> },
-    { name: "/Drawer/createevent", label: "Create", activeicon: <SvgXml xml={CreateActiveIcon}/> ,inactiveicon : <SvgXml xml={CreateIcon}/> },
-    { name: "/Drawer/transaction", label: "Transaction", activeicon: <SvgXml xml={TransactionActiveIcon}/> ,inactiveicon : <SvgXml xml={TransactionIcon}/> },
-    { name: "/Drawer/performence", label: "Performance", activeicon: <SvgXml xml={PerformenceActiveIcon}/> ,inactiveicon : <SvgXml xml={PerformenceIcon}/> },
-    { name: "/Drawer/profile", label: "Profile", activeicon: <SvgXml xml={ProfileActiveIcon}/> ,inactiveicon : <SvgXml xml={ProfileIcon}/> },
+    { name: "/Drawer/home", label: "Home", activeicon: <SvgXml xml={HomeActiveIcon} />, inactiveicon: <SvgXml xml={Homeicon} /> },
+    { name: "/Drawer/createevent", label: "Create", activeicon: <SvgXml xml={CreateActiveIcon} />, inactiveicon: <SvgXml xml={CreateIcon} /> },
+    { name: "/Drawer/transaction", label: "Transaction", activeicon: <SvgXml xml={TransactionActiveIcon} />, inactiveicon: <SvgXml xml={TransactionIcon} /> },
+    { name: "/Drawer/performence", label: "Performance", activeicon: <SvgXml xml={PerformenceActiveIcon} />, inactiveicon: <SvgXml xml={PerformenceIcon} /> },
+    { name: "/Drawer/profile", label: "Profile", activeicon: <SvgXml xml={ProfileActiveIcon} />, inactiveicon: <SvgXml xml={ProfileIcon} /> },
 ] as const;
 
 export default function CustomTabBar() {
     const router = useRouter();
     const pathname = usePathname();
-useEffect(() => {
-    if (pathname === "/Drawer" || pathname === "/") {
-      router.replace("/Drawer/home");
-    }
-  }, [pathname, router]);
+    useEffect(() => {
+        if (pathname === "/Drawer" || pathname === "/") {
+            router.replace("/Drawer/home");
+        }
+    }, [pathname, router]);
     return (
         <View
-            style={tw`flex-row bg-white border-t border-t-gray-300 py-[18px] justify-around items-center`}
+            style={tw`flex-row bg-white border-t ${Platform.OS === "ios" ? "h-[120px]" : "h-[90px]"}  border-t-gray-300 py-[18px] justify-around items-center`}
         >
             {organizationtabs.map((tab) => {
                 // এখানে default active `/Drawer/home` set করলাম
-                const isActive = pathname === tab.name || 
-                                 (pathname === "/" && tab.name === "/Drawer/home");
+                const isActive = pathname === tab.name ||
+                    (pathname === "/" && tab.name === "/Drawer/home");
 
                 return (
                     <TouchableOpacity
@@ -37,11 +37,11 @@ useEffect(() => {
                         style={tw`items-center justify-center`}
                     >
                         {isActive ? tab.activeicon : tab.inactiveicon}
-                      
-                            <Text style={tw`text-xs ${isActive ? 'text-[#1D0303]' : 'text-gray-500'} mt-0.5 font-bold`}>
-                                {tab.label}
-                            </Text>
-                    
+
+                        <Text style={tw`text-xs ${isActive ? 'text-[#1D0303]' : 'text-gray-500'} mt-0.5 font-bold`}>
+                            {tab.label}
+                        </Text>
+
                     </TouchableOpacity>
                 );
             })}

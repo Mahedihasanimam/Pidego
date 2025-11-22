@@ -1,4 +1,4 @@
-import { menuicon } from '@/assets/icons/Icon';
+import { instaicon, menuicon } from '@/assets/icons/Icon';
 import tw from '@/assets/lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRouter } from 'expo-router';
@@ -17,10 +17,10 @@ import { SvgXml } from 'react-native-svg';
 // --- Reusable Sub-Components ---
 
 const StatItem = ({ value, label }: { value: string; label: string }) => (
-  <View style={tw`items-center`}>
-    <Text style={tw`text-2xl font-RoboBold text-[#1D0303]`}>{value}</Text>
-    <Text style={tw`text-xs font-RoboNormal text-gray-600 mt-1`}>{label}</Text>
-  </View>
+    <View style={tw`items-center`}>
+        <Text style={tw`text-2xl font-RoboBold text-[#1D0303]`}>{value}</Text>
+        <Text style={tw`text-xs font-RoboNormal text-gray-600 mt-1`}>{label}</Text>
+    </View>
 );
 
 const InfoCard = ({ title, children, buttonText, onButtonPress }: { title: string, children: React.ReactNode, buttonText?: string, onButtonPress?: () => void }) => (
@@ -69,68 +69,69 @@ const ProfileScreen: React.FC = () => {
 
 
 
-  return (
-    <SafeAreaView style={tw`flex-1 bg-white`}>
-      <StatusBar barStyle="dark-content" />
-      {/* Header */}
-       <View style={tw`p-4 items-center mt-6 flex-row justify-between`}>
+    return (
+        <SafeAreaView style={tw`flex-1 bg-white`}>
+            <StatusBar barStyle="dark-content" />
+            {/* Header */}
+            <View style={tw`p-4 items-center mt-6 flex-row justify-between`}>
 
-         <TouchableOpacity onPress={() => (navigation as any).openDrawer()}>
-            <SvgXml xml={menuicon}/>
-        </TouchableOpacity>
-        <Text style={tw`text-3xl font-RoboBold text-[#1D0303]`}>My Profile</Text>
-      </View>
-      
-      <ScrollView contentContainerStyle={tw`pb-4 items-center px-5`}>
-        {/* Profile Info */}
-        <View style={tw`items-center mt-4`}>
-            <Image source={require('@/assets/images/carton.png')} style={tw`w-32 h-32 rounded-full mb-4`} />
-            <Text style={tw`text-2xl font-RoboBold text-[#1D0303]`}>Ittishaf Bashar</Text>
-            <Text style={tw`text-base text-gray-500`}>@ab_69bashar</Text>
-            <TouchableOpacity style={tw`bg-[#DD2A7B] rounded-full px-8 py-3 mt-4`}>
-                <Text style={tw`text-white font-RoboBold`}>Follow Me</Text>
-            </TouchableOpacity>
-        </View>
-
-        {/* Followers/Following */}
-        <View style={tw`bg-white shadow-lg rounded-lg flex-row justify-around p-4 my-6 w-full max-w-xs`}>
-            <View style={tw`items-center`}>
-                <Text style={tw`text-xl font-RoboMedium`}>1.2k</Text>
-                <Text style={tw`text-sm text-gray-500`}>Following</Text>
+                <TouchableOpacity onPress={() => (navigation as any).openDrawer()}>
+                    <SvgXml xml={menuicon} />
+                </TouchableOpacity>
+                <Text style={tw`text-3xl font-RoboBold text-[#1D0303]`}>My Profile</Text>
             </View>
-            <View style={tw`h-full w-px bg-gray-200`} />
-            <View style={tw`items-center`}>
-                <Text style={tw`text-xl font-RoboMedium`}>2.2k</Text>
-                <Text style={tw`text-sm text-gray-500`}>Followers</Text>
-            </View>
-        </View>
 
-        {/* Player Stats */}
-        <InfoCard  title="Player Stats">
-            <View style={tw`flex-row justify-around pt-2`}>
-                <StatItem value="12" label="Events Joined" />
-                <StatItem value="$850" label="Total Winnings" />
-                <StatItem value="#3" label="Top Rank" />
-            </View>
-        </InfoCard>
+            <ScrollView contentContainerStyle={tw`pb-4 items-center px-5`}>
+                {/* Profile Info */}
+                <View style={tw`items-center mt-4`}>
+                    <Image source={require('@/assets/images/carton.png')} style={tw`w-32 h-32 rounded-full mb-4`} />
+                    <Text style={tw`text-2xl font-RoboBold text-[#1D0303]`}>Ittishaf Bashar</Text>
+                    <Text style={tw`text-base text-gray-500`}>@ab_69bashar</Text>
+                    <TouchableOpacity style={tw`bg-transparent border border-[#F58529] rounded-full px-4 py-2 mt-4 flex-row items-center gap-2`}>
+                        <SvgXml xml={instaicon} />
+                        <Text style={tw`text-[#8134AF] font-bold text-lg font-RoboBold`}>Follow Me</Text>
+                    </TouchableOpacity>
+                </View>
 
-        {/* My Events */}
-        <InfoCard title="My Events">
-            <ListItem icon="trophy-outline" iconBg="bg-green-100" title="Gulshan Padel" actionText="Share" />
-            <ListItem icon="trophy-outline" iconBg="bg-green-100" title="Dhaka Football" actionText="Share" />
-        </InfoCard>
+                {/* Followers/Following */}
+                <View style={tw`bg-white shadow-lg rounded-lg flex-row justify-around p-4 my-6 w-full max-w-xs`}>
+                    <TouchableOpacity onPress={() => router.push("/profile/followingList")} style={tw`items-center`}>
+                        <Text style={tw`text-xl font-RoboMedium`}>1.2k</Text>
+                        <Text style={tw`text-sm text-gray-500`}>Following</Text>
+                    </TouchableOpacity>
+                    <View style={tw`h-full w-px bg-gray-200`} />
+                    <TouchableOpacity onPress={() => router.push('/profile/followerList')} style={tw`items-center`}>
+                        <Text style={tw`text-xl font-RoboMedium`}>2.2k</Text>
+                        <Text style={tw`text-sm text-gray-500`}>Followers</Text>
+                    </TouchableOpacity>
+                </View>
 
-        {/* My Teams */}
-        <InfoCard onButtonPress={()=>router.push('/modals/createNewTeam')} title="My Teams" buttonText="Create New Team">
-            <ListItem icon="people-outline" iconBg="bg-blue-100" title="Dhaka Dudes" subtitle="4 members" actionText="View" />
-             <ListItem icon="people-outline" iconBg="bg-blue-100" title="Padel Pros" subtitle="6 members" actionText="View" />
-        </InfoCard>
+                {/* Player Stats */}
+                <InfoCard title="Player Stats">
+                    <View style={tw`flex-row justify-around pt-2`}>
+                        <StatItem value="12" label="Events Joined" />
+                        <StatItem value="$850" label="Total Winnings" />
+                        <StatItem value="#3" label="Top Rank" />
+                    </View>
+                </InfoCard>
 
-      </ScrollView>
+                {/* My Events */}
+                <InfoCard title="My Events">
+                    <ListItem icon="trophy-outline" iconBg="bg-green-100" title="Gulshan Padel" actionText="Share" />
+                    <ListItem icon="trophy-outline" iconBg="bg-green-100" title="Dhaka Football" actionText="Share" />
+                </InfoCard>
 
-    
-    </SafeAreaView>
-  );
+                {/* My Teams */}
+                <InfoCard onButtonPress={() => router.push('/modals/createNewTeam')} title="My Teams" buttonText="Create New Team">
+                    <ListItem icon="people-outline" iconBg="bg-blue-100" title="Dhaka Dudes" subtitle="4 members" actionText="View" />
+                    <ListItem icon="people-outline" iconBg="bg-blue-100" title="Padel Pros" subtitle="6 members" actionText="View" />
+                </InfoCard>
+
+            </ScrollView>
+
+
+        </SafeAreaView>
+    );
 };
 
 export default ProfileScreen;
